@@ -68,7 +68,7 @@ upload = function(path){
     value = by(x$intensity,x$species,mean)#temp
     csvIntensity = data.frame(csvIntensity1,csvIntensity2, check.names = F)
     colnames(csvIntensity) = rep(names(value),each = 2)
-
+    csvIntensity$rows = rownames(csvIntensity)
     return(list(data=csvIntensity,color=rep(color,each=2)))
 
 }

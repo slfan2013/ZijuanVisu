@@ -438,7 +438,7 @@ if(!window.jQuery) {
   //exported functions
   ocpu.call = r_fun_call;
   ocpu.rpc = rpc;
-  ocpu.seturl = seturl("http://128.120.143.234:1234/ocpu/library/metabox.stat/R") //CORS
+  ocpu.seturl = seturl("http://128.120.143.234:1234/ocpu/library/ZijuanVisu/R") //CORS
   //ocpu.seturl = seturl("/ocpu/library/metabox.stat/R")
   //exported constructors
   ocpu.Snippet = Snippet;
