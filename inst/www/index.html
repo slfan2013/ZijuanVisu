@@ -24,6 +24,9 @@
     <link href="css/sb-admin-2.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
+
+
+    <script src="https://d3js.org/d3.v3.min.js"></script>
     <!-- My JS -->
     <script src="js.js"></script>
 
@@ -35,35 +38,40 @@
 <body>
 
     <div id="wrapper">
-      <input type="file" id="upload" accept=".xlsx,.csv">
-      <div class="row">
-        <center><h1>Intensity Sunburst</h1></center>
-        <div class="col-lg-6">
+      <div id="content-wrapper">
+        <div class="container-fluid">
+          <input type="file" id="upload" accept=".xlsx,.csv">
+          <div class="row">
+            <h1>Intensity Sunburst</h1>
+            <div class="col-lg-6">
 
-        </div>
-        <div class="col-lg-6">
+            </div>
+            <div class="col-lg-6">
 
-        </div>
-      </div><hr />
-      <div class="row">
-        <center><h1>Intensity Stacked Bar</h1></center>
-        <div class="col-lg-6">
+            </div>
+          </div><hr />
+          <div class="row">
+            <h1>Intensity Stacked Bar</h1>
+            <div class="col-lg-6">
 
-        </div>
-        <div class="col-lg-6">
+            </div>
+            <div class="col-lg-6">
 
-        </div>
-      </div>
-      <div class="row">
-        <center><h1>Frequency Stacked Bar</h1></center>
-        <div class="col-lg-6">
+            </div>
+          </div>
+          <div class="row">
+            <h1>Frequency Stacked Bar</h1>
+            <div class="col-lg-6">
+              <div id="stackedBar">
+              </div>
+            </div>
+            <div class="col-lg-6">
 
-        </div>
-        <div class="col-lg-6">
+            </div>
+          </div>
 
-        </div>
-      </div>
-
+    </div>
+    </div>
     </div>
 
 
