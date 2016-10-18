@@ -2,8 +2,8 @@ $(document).ready(function(){
 
   $('#upload').change(upload);
   function upload(){
-    var req=ocpu.call("upload",{
-      path:$("#uploadExample")[0].files[0]
+    var req=ocpu.call("uploadExample",{
+      path:$("#upload")[0].files[0]
     },function(session){
       session.getObject(function(obj){
       data = obj.data
