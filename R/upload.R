@@ -123,7 +123,7 @@ upload = function(path){
 
 ##############################################################################
     # path = "data\\dataNew.xlsx"
-    path = "C:\\Users\\Sili Fan\\Desktop\\WORK\\WCMC\\projects\\Zijuan Lai\\ZijuanVisu\\data\\dataNew.xlsx"
+    path = "C:\\Users\\fansi\\Desktop\\ZijuanVisu\\data\\dataNew.xlsx"
     library(jsonlite)
     library(RColorBrewer)
 
