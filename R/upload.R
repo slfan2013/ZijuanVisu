@@ -10,9 +10,9 @@
 #'
 
 upload = function(path){
-  # path = "C:\\Users\\Sili Fan\\Desktop\\WORK\\WCMC\\projects\\Zijuan Lai\\ZijuanVisu\\data\\data.xlsx"
+  # path = "C:\\Users\\Sili Fan\\Desktop\\WORK\\WCMC\\projects\\Zijuan Lai\\ZijuanVisu\\data\\dataNew.xlsx"
   d<-openxlsx::read.xlsx(path,sheet=1,colNames=T)
-  d2<-openxlsx::read.xlsx(path,sheet=1,colNames=T)
+  d2<-openxlsx::read.xlsx(path,sheet=2,colNames=T)
   total<-openxlsx::read.xlsx(path,sheet=3,colNames=T)
   total = total[total$`organ-Mump`%in%d$organ&total$`organ-mALA`%in%d2$organ&
                   total$species%in%d$species&total$species%in%d2$species,]
@@ -64,11 +64,21 @@ upload = function(path){
       return(as.numeric(value))
     }))
 
+
     x = d2[d2$organ==d2$organ[2],]#temp
     value = by(x$intensity,x$species,mean)#temp
     csvIntensity = data.frame(csvIntensity1,csvIntensity2, check.names = F)
-    colnames(csvIntensity) = rep(names(value),each = 2)
-    csvIntensity$rows = rownames(csvIntensity)
-    return(list(data=csvIntensity,color=rep(color,each=2)))
+
+
+    for(i in 1:nrow(csvIntensity)){
+
+    }
+
+    colnames(csvIntensity) = rep(names(value),2)
+    csvIntensity = data.frame(rows =rownames(csvIntensity),csvIntensity,check.names = F)
+    rownames(csvIntensity) = 1:nrow(csvIntensity)
+
+    csvIntensity[csvIntensity==0] = 1
+        return(list(data=csvIntensity,color=rep(substring(color,1,6),2)))
 
 }
