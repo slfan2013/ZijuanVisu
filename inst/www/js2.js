@@ -55,7 +55,7 @@ function apiQuery(short, onsuccess) {
 	function processData() {
 		if (!structures || !expression || !intensity)
 			return;
-        $("#useIntensityFromSystem").css("background", "");
+        $("#useIntensityFromSystem2").css("background", "");
 str = structures;exp = expression; int = intensity;
 		callback(structures,expression,intensity);
 	}
@@ -83,7 +83,7 @@ str = structures;exp = expression; int = intensity;
 			"<p>Error message:</p>" +
 			"<p>" + response + "</p>";
 
-        $("#useIntensityFromSystem").css("background", "");
+        $("#useIntensityFromSystem2").css("background", "");
 
 		var dialog = $( "#errorDialog" );
 
@@ -112,147 +112,11 @@ str = structures;exp = expression; int = intensity;
       session.getObject(function(obj){
       data = obj.data
       col = obj.color
-     IntensityStackedBar = function(data,col,id,format=false,min=10){
-      var margin = {top: 80, right: 20, bottom: 20, left: 200},
-          width = 1500 - margin.left - margin.right,
-          height = 550 - margin.top - margin.bottom;
-
-      var y = d3.scale.ordinal()
-          .rangeRoundBands([0, height], .3);
-
-      var x = d3.scale.linear()
-          .rangeRound([0, width]);
-
-
-    if(format){
-      var xAxis = d3.svg.axis()
-          .scale(x)
-          .tickFormat(d3.format(",%"))
-          .orient("top");
-    }else{
-      var xAxis = d3.svg.axis()
-          .scale(x)
-          //.tickFormat(d3.format(",k"))
-          .orient("top");
-    }
-
-
-      var yAxis = d3.svg.axis()
-          .scale(y)
-          .tickSize(0)
-          .orient("left");
-
-      var color = d3.scale.ordinal()
-          .range(col);
-
-      var svg = d3.select('#'+id).append("svg")
-          .attr("width", width + margin.left + margin.right)
-          .attr("height", height + margin.top + margin.bottom)
-          .append("g")
-          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-
-      var rateNames = d3.keys(data[0]).filter(function(key) { return key !== "rows"; });
-      var rowsNames = data.map(function(d) { return d.rows; });
-      var neutralIndex = Math.floor(rateNames.length/2);
-
-      color.domain(rateNames);
-
-      data.forEach(function(row) {
-      row.total = d3.sum(rateNames.map(function(name) { return +row[name]; }));
-      rateNames.forEach(function(name) { row['relative'+name] = row.total !==0 ? +row[name] : 0; });
-
-      var x0 = -1 * d3.sum(rateNames.map(function(name,i) { return i < neutralIndex ? +row['relative'+name] : 0; }));
-      if (rateNames.length & 1) x0 += -1 * row['relative' + rateNames[neutralIndex] ]/2;
-      var idx = 0;
-
-      row.boxes = rateNames.map(function(name) {
-        return {name: name, x0: x0, x1: x0 += row['relative'+name], total: row.total, absolute: row[name]};
-      });
-      });
-
-   var min = d3.min(data, function(d) { return d.boxes["0"].x0; });
-   var max = d3.max(data, function(d) { return d.boxes[d.boxes.length-1].x1; });
-
-    x.domain([min, max]).nice();
-    y.domain(rowsNames);
-
-    svg.append("g")
-       .attr("class", "x axis")
-       .call(xAxis);
-
-    svg.append("g")
-       .attr("class", "y axis")
-       .call(yAxis);
-
-    var rows = svg.selectAll(".row")
-        .data(data)
-      .enter().append("g")
-        .attr("class", "bar")
-        .attr("transform", function(d) { return "translate(0," + y(d.rows) + ")"; })
-        .on("mouseover", function(d) {
-          svg.selectAll('.y').selectAll('text').filter(function(text) { return text===d.rows; })
-              .transition().duration(100).style('font','25px sans-serif');
-        })
-        .on("mouseout", function(d) {
-          svg.selectAll('.y').selectAll('text').filter(function(text) { return text===d.rows; })
-              .transition().duration(100).style('font','20px sans-serif');
-        });
-
-    var bars = rows.selectAll("rect")
-      .data(function(d) { return d.boxes; })
-      .enter().append("g");
-
-      bars.append("rect")
-          .attr("height", y.rangeBand())
-          .attr("x", function(d) {return x(d.x0); })
-          .attr("width", function(d) { return x(d.x1) - x(d.x0); })
-          .style("fill", function(d) { return color(d.name); });
-
-      bars.append("text")
-        .attr("x", function(d) { return x(d.x0); })
-        .attr("y", y.rangeBand()/2)
-        .attr("dy", "0.5em")
-        .attr("dx", "0.5em")
-        .style("text-anchor", "begin")
-        .text(function(d) { return d.absolute !== 0 && (d.x1-d.x0)>min ? d.absolute : "" });
-
-      svg.append("g")
-          .attr("class", "y axis")
-        .append("line")
-          .attr("x1", x(0))
-          .attr("x2", x(0))
-          .attr("y1", 0)
-          .attr("y2", height);
-
-
-      var legend = svg.selectAll(".legend")
-          .data(rateNames.slice(0,neutralIndex))
-        .enter().append("g")
-          .attr("class", "legend")
-          .attr("transform", function(d, i) { return "translate(" + 2*width/rateNames.length * i + ",-55)"; });
-
-          legend.append("rect")
-                .attr("x", 0)
-                .attr("width", 18)
-                .attr("height", 18)
-                .style("fill", color);
-
-          legend.append("text")
-                .attr("x", 22)
-                .attr("y", 9)
-                .attr("dy", ".35em")
-                .style("text-anchor", "begin")
-                .text(function(d) { return d; });
-}
-     IntensityStackedBar(obj.data,obj.color,"stackedBar")
-     IntensityStackedBar(obj.data2,obj.color,"stackedFreqBar",false,5)
 
 {
   long1 = obj.long1;short1 = obj.short1;long2 = obj.long2;short2 = obj.short2;
   var sectionDataSetId = 69855739;
-//var w = $("#chart").width();
-//var h = $("#chart").height();
+
 var w = 650;
 var h = 650;
 var r = Math.min(w, h) / 2;
@@ -288,7 +152,7 @@ for (var i = 0; i < scaleOptions.length; i++) {
 								.html(opt));
 }
 
-scaleButtonContainer.buttonset();
+//scaleButtonContainer.buttonset();
 
 function uniformValue(d) { return 1; }
 function expressionValue(d) {
@@ -314,9 +178,9 @@ var yOut = d3.scale.linear().domain(expDomain).range([r - 1*outerRadius, r]).cla
 var expcolor = d3.scale.linear().domain(expDomain).range(["#eee", "red"]);
 var highlightcolor = d3.scale.linear().domain(expDomain).range(["#f9fbe4", "#f9fbe4"]);
 importData(1,
-long1,
-short1,function(structureTree, expression, intensity) {
-  var vis = d3.select("#useIntensityFromSystem").append("svg:svg")
+long2,
+short2,function(structureTree, expression, intensity) {
+  var vis = d3.select("#useIntensityFromSystem2").append("svg:svg")
 	.attr("id","vis")
 	.attr("width", w)
 	.attr("height", h)
@@ -344,7 +208,7 @@ var arcHighlight = d3.svg.arc()
 	rootNode = structureTree;
 	expressionHash = expression;
 	intensityHash = intensity;
-	$("#useIntensityFromSystem").css("background", "");
+	$("#useIntensityFromSystem2").css("background", "");
 	// The mouseover highlight goes first, so that the actual visualization
 	// elements will be drawn on top due to z-ordering.
 	 highlight = vis.append("svg:path")
