@@ -122,8 +122,8 @@ upload = function(path){
     # csvFrequency[csvFrequency==0] = 1
 
 ##############################################################################
-    path = "data\\dataNew.xlsx"
-    #path = "C:\\Users\\Sili Fan\\Desktop\\WORK\\WCMC\\projects\\Zijuan Lai\\ZijuanVisu\\data\\dataNew.xlsx"
+    # path = "data\\dataNew.xlsx"
+    path = "C:\\Users\\Sili Fan\\Desktop\\WORK\\WCMC\\projects\\Zijuan Lai\\ZijuanVisu\\data\\dataNew.xlsx"
     library(jsonlite)
     library(RColorBrewer)
 
